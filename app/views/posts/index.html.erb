@@ -10,6 +10,16 @@
 
     <p><%= post.content %></p>
 
+    <p>
+      <a href="<%= edit_post_path(post.id) %>" class="btn btn-primary">Edit</a>
+      <a href="<%= post_path(post.id) %>" class="btn btn-danger" data-confirm="Are you sure?" data-method="DELETE">Delete</a>
+      <a href="<%= post_path(post.id)%>" class="btn btn-primary">Read more</a>
+    </p>
+
   <% end %>
+
+  <p>
+    <a href="<%= new_post_path %>" class="btn btn-success">Create a Post</a>
+  </p>
 
 </div>

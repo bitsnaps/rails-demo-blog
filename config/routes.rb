@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'categories/index'
+
+  get 'categories/new'
+
+  get 'categories/create'
+
+  get 'categories/show'
+
+  get 'categories/edit'
+
+  get 'categories/update'
+
+  get 'categories/destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,7 +22,11 @@ Rails.application.routes.draw do
   # Hello route
   get '/hello/(:name)', to: 'pages#hello', as: 'hello' # will be named: hello_path
 
-  get '/articles', to: 'posts#index', as: 'posts' # will be named: posts_path
+  # get '/articles', to: 'posts#index', as: 'posts' # will be named: posts_path
+
+  resources :posts
+  
+  resources :categories
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

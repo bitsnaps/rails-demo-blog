@@ -1,0 +1,12 @@
+<h1>Categories</h1>
+
+<div class="categories">
+
+  <% @categories.each do |category| %>
+    <p><%= category.name %></p>
+    <p><%= category.slug %></p>
+    <a href="<% edit_category_path(category.id) %>" class="btn btn-primary">Edit</a>
+  <% end %>
+
+
+</div>

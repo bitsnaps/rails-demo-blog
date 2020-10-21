@@ -1,0 +1,42 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
+
+Create a new project:
+rails new project_name --database=[sqlite|mysql|postgresql]
+
+# Run the application (-b for binding (listening) on all interfaces)
+rails s -b 0.0.0.0
+
+# Fix the issue: "Gem::LoadError: can't activate sqlite3 (~> 1.3.6), already activated sqlite3-1.4.2."
+## uninstall the conflicted version:
+sudo gem uninstall sqlite3 -v 1.4.2
+## then add the specified version:
+gem 'sqlite3', '~> 1.3.6'
+## then update gems:
+[sudo] gem update

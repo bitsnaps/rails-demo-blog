@@ -1,0 +1,15 @@
+<h1>Articles</h1>
+
+<%# @posts.inspect %>
+
+<div class="articles">
+
+  <% @posts.each do |post| %>
+
+    <h2><%= post.name %></h2>
+
+    <p><%= post.content %></p>
+
+  <% end %>
+
+</div>

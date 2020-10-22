@@ -7,6 +7,7 @@
     <p><%= category.slug %></p>
     <a href="<%= edit_category_path(category.id) %>" class="btn btn-sm btn-primary">Edit</a>
     <a href="<%= category_path(category.id) %>" class="btn btn-sm btn-danger" data-confirm="Are you sure?" data-method="DELETE">Delete</a>
+    <a href="<%= category_path(category.id) %>" class="btn btn-sm btn-success">Read</a>
   <% end %>
 
   <hr>

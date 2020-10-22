@@ -1,5 +1,24 @@
 class PostsController < ApplicationController
 
+  # before_action
+  # around_action (do before and after an action)
+  # after_action
+
+  # Do somehting before any action (set_post is your private method)
+  # before_action :set_post
+
+  # Do something before any action
+  before_action do |controller|
+    puts '****************$ I am before the action'
+  end
+
+  # Do before & after an action
+  # around_action :do_around
+
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
+  # You can disable CSRF protection on controller, this will bypass verification of CSRF token before an action (example)
+  # skip_before_action :verify_authenticity_token #, only: [:show, :edit]
+
   def index
     @posts = Post.all
   end
@@ -9,16 +28,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
-
     @post.update( post_params )
 
     redirect_to posts_path
@@ -30,8 +45,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
+    @post.destroy
     redirect_to posts_path
   end
 
@@ -39,5 +53,15 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:name, :content)
   end
+
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
+  # def do_around
+  #   puts '*************** Around before the action ********************'
+  #   yield
+  #   puts '*************** Around after the action ********************'
+  # end
 
 end

@@ -56,6 +56,24 @@ class PostsController < ApplicationController
     # cookies.delete(:username)
 
     @posts = Post.all
+
+    # puts request.format
+
+    respond_to do |format|
+      format.html #{ redirect_to(posts_path) }
+      # Custom format variant (tables, mobile..)
+      # format.html do |variant|
+      #   variant.tablet # renders app/views/projects/show.html+tablet.erb
+      #   variant.phone { extra_setup; render ... }
+      #   variant.none  { special_setup } # executed only if there is no variant set
+      # end
+      # format.json {render json: @posts }
+      # as_json() can be redifined in the model Post
+      format.json {render json: @posts.as_json(only: [:name, :created_at]) }
+      format.xml  { render xml: @posts.to_xml(only: [:name, :content]) }
+      # Custom MimeType registration (checkout: /config/initializers/mime_types.rb)
+      # format.rtf  { render plain: 'RTF send' }
+    end
   end
 
   def new
@@ -63,6 +81,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+    end
   end
 
   def edit

@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   before_action :find_category, only: [:show, :edit, :update, :destroy]
 
   def index
+    # @user_id = session[:user_id] # now you can output: <%= @user_id %>
     @categories = Category.all
   end
 

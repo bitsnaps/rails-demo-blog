@@ -20,6 +20,9 @@ class PostsController < ApplicationController
   # skip_before_action :verify_authenticity_token #, only: [:show, :edit]
 
   def index
+    # session[:user_id] = 4
+    # flash.now will show the message one time at a page
+    # flash.now[:success] = 'Hi'
     @posts = Post.all
   end
 
@@ -36,17 +39,26 @@ class PostsController < ApplicationController
   def update
     @post.update( post_params )
 
-    redirect_to posts_path
+    # Manually add flash message
+    # session[:success] = 'Article updated!'
+
+    # Flash messages example
+    # flash[:success] = 'Article updated!'
+    # flash[:danger] = 'Article cannot be updated!'
+
+    # redirect_to posts_path, flash: {success: 'Article updated!'}
+    # Custom flash flag has been added to ApplicationController
+    redirect_to posts_path, success: 'Article updated!'
   end
 
   def create
     post = Post.create(post_params)
-    redirect_to post_path(post.id)
+    redirect_to post_path(post.id), success: 'A new article has been created!'
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, danger: 'Article deleted!'
   end
 
   # private methods

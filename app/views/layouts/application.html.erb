@@ -32,6 +32,21 @@
 </div>
 </nav>
 <div class="container" style="padding-top: 5rem;">
+  <%# if session[:success] %>
+    <!-- div class="alert alert-success">
+      <p><%#= session[:success] %></p>
+      <% session.delete(:success) %>
+    </div -->
+  <%# end %>
+
+  <% if flash.count > 0 %>
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name %>">
+        <p><%= msg %></p>
+      </div>
+    <% end %>
+  <% end %>
+
   <%= yield %>
 
 </div>

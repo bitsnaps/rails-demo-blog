@@ -23,6 +23,38 @@ class PostsController < ApplicationController
     # session[:user_id] = 4
     # flash.now will show the message one time at a page
     # flash.now[:success] = 'Hi'
+
+    # Cookies examples
+    # cookies[:username] = 'Admin'
+    # cookies[:username] = {
+    #   value: 'Admin',
+    #   expires: 1.month.from_now
+    # }
+
+    # JSON read cookies
+    # if cookies[:username]
+    #   puts JSON.parse(cookies[:username]).inspect
+    # end
+
+    # JSON write cookies
+    # cookies[:username] = {
+    #   value: JSON.generate({ name:'Admin' }),
+    #   expires: 1.month.from_now
+    # }
+
+    # Signed cookies
+    # cookies.signed[:username] = 'Admin'
+
+    # Encrypted cookies
+    # cookies.encrypted[:username] = 'Admin'
+
+    # Permanent cookies
+    # cookies.permanent[:username] = 'Admin'
+    # cookies.permanent.signed[:username] = 'Admin'
+
+    # Delete Cookies
+    # cookies.delete(:username)
+
     @posts = Post.all
   end
 

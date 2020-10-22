@@ -72,7 +72,7 @@ class PostsController < ApplicationController
       format.json {render json: @posts.as_json(only: [:name, :created_at]) }
       format.xml  { render xml: @posts.to_xml(only: [:name, :content]) }
       # Custom MimeType registration (checkout: /config/initializers/mime_types.rb)
-      # format.rtf  { render plain: 'RTF send' }
+      format.rtf  { render plain: 'RTF send' }
     end
   end
 
@@ -102,12 +102,23 @@ class PostsController < ApplicationController
 
     # redirect_to posts_path, flash: {success: 'Article updated!'}
     # Custom flash flag has been added to ApplicationController
-    redirect_to posts_path, success: 'Article updated!'
+
+    if @post.update(post_params)
+      redirect_to posts_path, success: 'Article updated!'
+    else
+      render 'edit'
+    end
   end
 
   def create
-    post = Post.create(post_params)
-    redirect_to post_path(post.id), success: 'A new article has been created!'
+    post = Post.new(post_params)
+    if post.valid?
+      post.save
+      redirect_to post_path(post.id), success: 'A new article has been created!'
+    else
+      @post = post
+      render 'new'
+    end
   end
 
   def destroy

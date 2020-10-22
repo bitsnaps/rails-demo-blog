@@ -1,5 +1,15 @@
-
 <h2>Edit Post N°<%= @post.id%></h2>
+
+<% if @post.invalid? %>
+  <div class="alert alert-danger">
+    <ul>
+    <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @post, url: {action: "update"}, html: {class: "form-vertical"} do |f| %>
 <div class="form-group">
   <%= f.text_field :name, class: 'form-control' %>

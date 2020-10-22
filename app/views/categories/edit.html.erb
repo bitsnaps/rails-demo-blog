@@ -1,16 +1,6 @@
 
 <h2>Edit Category N°<%= @category.id%></h2>
 
-<% if @category.invalid? %>
-  <div class="alert alert-danger">
-    <ul>
-    <% @category.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <%= form_for @category, url: {action: "update"}, html: {class: "form-vertical"} do |f| %>
 <div class="form-group">
   <%= f.text_field :name, class: 'form-control' %>

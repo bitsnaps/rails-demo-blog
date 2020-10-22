@@ -128,7 +128,7 @@ class PostsController < ApplicationController
 
   # private methods
   def post_params
-    params.require(:post).permit(:name, :content)
+    params.require(:post).permit(:name, :content, :slug)
   end
 
   def find_post

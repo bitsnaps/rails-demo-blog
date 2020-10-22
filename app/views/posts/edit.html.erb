@@ -1,6 +1,6 @@
 <h2>Edit Post N°<%= @post.id%></h2>
 
-<% if @post.invalid? %>
+<% if @post.errors.any? %><%# check with invalid may cause an error %>
   <div class="alert alert-danger">
     <ul>
     <% @post.errors.full_messages.each do |message| %>
@@ -13,6 +13,9 @@
 <%= form_for @post, url: {action: "update"}, html: {class: "form-vertical"} do |f| %>
 <div class="form-group">
   <%= f.text_field :name, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.text_field :slug, class: 'form-control' %>
 </div>
 <div class="form-group">
   <%= f.text_area :content, size: "60x12", class: 'form-control' %>

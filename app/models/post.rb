@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
 
+  # Include a behavior (moved to concerns: /app/controllers/concerns/sluggable.rb for reusability)
+  include Sluggable
+
   # Validation Rules
   # validates :name, presence: true # name is required
   # validates :name, presence: { message: 'You must enter the title of the Post' }
@@ -31,6 +34,15 @@ class Post < ApplicationRecord
   validates :name, name: { message: ' should be greater than 2.'}
   validates :content, name: true
 
+  # https://guides.rubyonrails.org/v4.1.16/active_record_callbacks.html
+  # before_validation :default_slug, if: Proc.new { (!self.name.nil? && !self.name.empty?) && (self.slug.nil? || self.slug.empty?) }
+  # before_validation :default_slug #, only: :create
+  # before_save :default_slug2
+  # validates :slug, format: { with: /\A[a-z0-9\-]+\z/}, uniqueness: true
+  # before_validation do
+  #
+  # end
+
   # Custom json formatter
   def as_json(options = nil)
     super(only: [:name, :id, :created_at])
@@ -47,5 +59,6 @@ class Post < ApplicationRecord
   #     errors.add(:name, :not_2, { message: 'length must be greater than 2 chars.' })
   #   end
   # end
+
 
 end

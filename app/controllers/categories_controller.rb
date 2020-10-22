@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.create(post_params)
+    category = Category.create(category_params)
     redirect_to category_path(category.id)
   end
 
@@ -27,12 +27,13 @@ class CategoriesController < ApplicationController
     @category.update( category_params )
 
     redirect_to categories_path
-
   end
 
   def destroy
     category = Category.find(params[:id])
+
     category.destroy
+
     redirect_to categories_path
   end
 

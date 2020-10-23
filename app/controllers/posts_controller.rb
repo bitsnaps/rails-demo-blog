@@ -55,8 +55,23 @@ class PostsController < ApplicationController
     # Delete Cookies
     # cookies.delete(:username)
 
-    @posts = Post.all
+    # @posts = Post.all
+    # @posts = Post.where(online: 1).all
+    # Scoped queries
+    # @posts = Post.published.all
+    # @posts = Post.offline.alpha.all
+    # @posts = Post.offline.alpha.reorder(name: :asc).all # overwrite the implicit order by alpha
+    # @posts = Post.offline.alpha.rewhere(online: 1).all # overwrite the implicit where by offline
 
+    # @posts = Post.online(1).all # scoped query with argument
+    # @posts = Post.online(0).newest.all # scoped query with argument
+    # @posts = Post.all # scoped query with argument
+    # @posts = Post.unscoped.order(created_at: :desc).all # ignore all scoped queries
+    # @posts = Post.published.unscope(:order).all # ignore the ORDER BY clause in the published scoped query
+    # @posts = Post.where(online: 1, id: 3).unscope(:where).all # ignore the WHERE clause
+    @posts = Post.where(online: 0, id: 3).unscope(where: :id).all # ignore the WHERE clause on ID field
+
+    # debugging:
     # puts request.format
 
     respond_to do |format|

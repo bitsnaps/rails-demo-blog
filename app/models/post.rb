@@ -48,6 +48,27 @@ class Post < ApplicationRecord
     super(only: [:name, :id, :created_at])
   end
 
+  # 1- Self contained queries (may returns a "false" so you can chain it with .all())
+  # def self.published
+  #   where(online: 1)
+  # end
+
+  # 2- Scoped queries (can be chained with .all() )
+  scope :published, -> { where(online: 1).order('created_at DESC')}
+  scope :offline, -> { where(online: 0)}
+  scope :alpha, -> { order(name: :asc)}
+  scope :newest, -> { order(created_at: :desc)}
+  # with argument
+  # scope :online, -> (is_online) { where(online: is_online)}
+  scope :online, -> (is_online) do
+    where(online: is_online) if is_online.is_a? Integer # check if the param is an Integer
+  end
+
+  # Global scope (applied everywhere to this model queries)
+  default_scope { order(created_at: :desc)} # CAUTION: use it only when really necessary
+
+
+
   # def check_content
   #   content.length < 10
   # end

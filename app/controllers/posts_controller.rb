@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
 
+  # Helpers can be included in controller
+  # include GravatarHelper
+
   # before_action
   # around_action (do before and after an action)
   # after_action
@@ -147,7 +150,7 @@ class PostsController < ApplicationController
 
   # private methods
   def post_params
-    params.require(:post).permit(:name, :content, :slug)
+    params.require(:post).permit(:name, :content, :slug, :category_id)
   end
 
   def find_post

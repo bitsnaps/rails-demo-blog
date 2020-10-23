@@ -23,5 +23,8 @@ module DemoBlog
     # Add directories to autoload_paths (need to restart rails server)
     config.autoload_paths << "#{Rails.root}/app/models/validators"
 
+    # Disable helper creation with controller
+    config.generators.helper = false
+
   end
 end

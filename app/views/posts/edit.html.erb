@@ -1,3 +1,16 @@
+<p>
+  <a href="<%= url_for(controller: 'posts', action:'index', host:'localhost', post:3000, only_path: true)%>" class="btn btn-primary">Back to Posts</a>
+</p>
+
+<%= gravatar('bitsnaps@yahoo.fr', options: {s:150}) %>
+
+<%# query finder %>
+<%#= url_for(q:'find')%>
+
+<%#= url_for(@post) %>
+
+<%#= url_for([:edit, @post])%>
+
 <h2>Edit Post N°<%= @post.id%></h2>
 
 <%#= render partial: 'form', object: @post, as: 'item' %>

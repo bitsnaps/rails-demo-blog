@@ -17,7 +17,11 @@
   <% end %>
 
   <p>
-    <a href="<%= edit_post_path(post.id) %>" class="btn btn-primary">Edit</a>
-    <a href="<%= post_path(post.id) %>" class="btn btn-danger" data-confirm="Are you sure?" data-method="DELETE">Delete</a>
-    <a href="<%= post_path(post.id)%>" class="btn btn-primary">Read more</a>
+    <!-- a href="<%#= edit_post_path(post.id) %>" class="btn btn-primary">Edit</a -->
+    <%= link_to('Edit', [:edit, post], class: 'btn btn-primary') %>
+    <!-- a href="<%= post_path(post.id) %>" class="btn btn-danger" data-confirm="Are you sure?" data-method="DELETE">Delete</a -->
+    <%= link_to('Delete', post, class: 'btn btn-danger', data: {confirm: 'Are you sure?', method: :delete}) %>
+    <!-- a href="<%= post_path(post.id)%>" class="btn btn-primary">Read more</a -->
+    <%= link_to('Read more', post, class: 'btn btn-default') %>
+    <!-- a href="<%= url_for(post)%>" class="btn btn-primary">Read more2</a -->
   </p>

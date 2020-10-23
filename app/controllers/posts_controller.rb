@@ -69,7 +69,11 @@ class PostsController < ApplicationController
     # @posts = Post.unscoped.order(created_at: :desc).all # ignore all scoped queries
     # @posts = Post.published.unscope(:order).all # ignore the ORDER BY clause in the published scoped query
     # @posts = Post.where(online: 1, id: 3).unscope(:where).all # ignore the WHERE clause
-    @posts = Post.where(online: 0, id: 3).unscope(where: :id).all # ignore the WHERE clause on ID field
+    # @posts = Post.where(online: 0, id: 3).unscope(where: :id).all # ignore the WHERE clause on ID field
+
+    # Include subqueries to avoid N+1 performance problem (Lazy loading)
+    # @posts = Post.includes(:category).all
+    @posts = Post.includes(:category: tags).all
 
     # debugging:
     # puts request.format

@@ -3,7 +3,7 @@
 <div class="categories">
 
   <% @categories.each do |category| %>
-    <p><%= category.name %></p>
+    <p><%= category.name %> (has <%= category.posts_count %> post(s))</p>
     <p><%= category.slug %></p>
     <a href="<%= edit_category_path(category.id) %>" class="btn btn-sm btn-primary">Edit</a>
     <a href="<%= category_path(category.id) %>" class="btn btn-sm btn-danger" data-confirm="Are you sure?" data-method="DELETE">Delete</a>

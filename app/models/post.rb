@@ -3,6 +3,17 @@ class Post < ApplicationRecord
   # Include a behavior (moved to concerns: /app/controllers/concerns/sluggable.rb for reusability)
   include Sluggable
 
+  # following the convention (CamelCase...) you'll get everything setup
+  # belongs_to :category, counter_cache: true
+  # counter_cache will just increment/derecment
+  belongs_to :category, counter_cache: :posts_count # for better counting performance
+
+  # Post to Tag relationship (many-to-many)
+  has_and_belongs_to_many :tags #, join_table: "posts_tags"
+
+  # Polymorphic relationship
+  has_many :metas, as: :metatable
+
   # Validation Rules
   # validates :name, presence: true # name is required
   # validates :name, presence: { message: 'You must enter the title of the Post' }

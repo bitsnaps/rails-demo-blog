@@ -73,7 +73,7 @@ class PostsController < ApplicationController
 
     # Include subqueries to avoid N+1 performance problem (Lazy loading)
     # @posts = Post.includes(:category).all
-    @posts = Post.includes(:category: tags).all
+    @posts = Post.includes(:category, :tags).all
 
     # debugging:
     # puts request.format

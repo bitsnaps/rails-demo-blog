@@ -92,5 +92,10 @@ class Post < ApplicationRecord
   #   end
   # end
 
+  # Overwrite partial path of a Post
+  # def to_partial_path
+  #   'posts/post/show'
+  # end
+
 
 end

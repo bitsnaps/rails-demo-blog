@@ -5,7 +5,7 @@ class PagesController < ApplicationController # extends ApplicationController wi
   end
 
   def home
-
+    # ContactMailer.contact(Post.first).deliver #deliver_now in rails v5
   end
 
 end

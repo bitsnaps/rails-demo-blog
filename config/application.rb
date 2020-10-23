@@ -32,5 +32,8 @@ module DemoBlog
     # Serve images/assets from CDN (you can put this line in production config)
     # config.action_controller.asset_host = 'cdn.mydomainname.com'
 
+    # Default mailer host (can be customized for prod/dev environment)
+    # config.action_mailer.default_url_options = { host: 'example.com' }
+
   end
 end

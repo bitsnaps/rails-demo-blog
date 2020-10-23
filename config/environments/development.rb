@@ -36,4 +36,20 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.log_level = :debug
+
+  # Email configuration (can be tested with "maildev")
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    # address:              'smtp.gmail.com',
+    address:              'localhost',
+    # port:                 587,
+    port:                 1025,
+    # domain:               'example.com',
+    domain:               'localhost',
+    # user_name:            '<username>',
+    # password:             '<password>',
+    # authentication:       'plain',
+    # enable_starttls_auto: true
+  }
+
 end

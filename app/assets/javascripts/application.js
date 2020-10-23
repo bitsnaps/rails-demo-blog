@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+/*
+Note: turbolinks for js navigation, turn it off it cause issues with your js
+*/

@@ -26,5 +26,11 @@ module DemoBlog
     # Disable helper creation with controller
     config.generators.helper = false
 
+    # Disable assets creation with controller
+    config.generators.assets = false
+
+    # Serve images/assets from CDN (you can put this line in production config)
+    # config.action_controller.asset_host = 'cdn.mydomainname.com'
+
   end
 end
